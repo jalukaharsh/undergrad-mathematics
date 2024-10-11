@@ -1,0 +1,568 @@
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{geometry}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{8pt}
+\usepackage{graphicx}
+\usepackage{multicol}
+\usepackage{mathrsfs}
+\usepackage{hyperref}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\QED}{\rightline{\emph{Quod erat demonstrandum.}}}
+\allowdisplaybreaks
+
+\title{MAT267 Theorems}
+\author{Harsh Jaluka}
+\date{\today}
+
+\begin{document}
+
+\begin{titlepage}
+\maketitle 
+\end{titlepage}
+
+\newpage
+
+\tableofcontents
+
+\newpage 
+Books referenced: 
+\begin{itemize}
+    \item \emph{Ordinary Differential Equations} by Morris Tenenbaum and Harry Pollard: [TP]
+    \item \emph{Differential Equations, Dynamical Systems and An Introduction to Chaos} by Morris W. Hirsch, Stephen Smale and Robert L. Devaney: [HSD]
+\end{itemize}
+
+\newpage
+
+\section{Existence and uniqueness for nonlinear systems}
+
+\subsection{The (local) existence and uniqueness theorem:}
+\textbf{Source: HSD Page 385}
+
+Consider the initial value problem 
+\begin{align*}
+    \begin{cases}
+    X' = F(X) \\
+    X(t_0) = X_0
+    \end{cases}
+\end{align*}
+where $X_0 \in \R^n$. Suppose $F: \R^n \to \R^n$ is $C^1$. Then, there exists a unique solution to this initial value problem for $a > 0$, $I = (t_0 - a, t_0 + a) $
+\begin{align*}
+    X: I \to \R^n
+\end{align*}
+satisfying the initial condition $X(t_0) = X_0$. 
+
+\subsection{Corollaries to the local existence and uniqueness theorem}
+\textbf{Source: Lecture 11}
+\begin{enumerate}
+    \item If $J \subseteq I$ with $t_0 \in J$ and we have a solution $X_I$ unique in $I$ and $X_J$ unique in $J$, then the two solutions agree on $J$. \item If $X(t)$ is a unique solution for $X' = F(X)$ with $F(0) = A$ defined on an interval $I \ni t_0$, then the maximal interval of existence for $X(t)$ is the union of all such intervals $I$ that exist. 
+    \item If $X(t)$ is the unique solution defined on the maximal interval $I_{max}= (a,b)$, then $\lim_{t \to b^-} x(t) = \pm \infty$
+\end{enumerate}
+
+\subsection{Definition (review): uniform continuity}
+\textbf{Source: Lecture 12}
+
+A function $f: A \to \R$ is called uniformly continuous if it has the property 
+\begin{align*}
+    \forall \epsilon > 0. \exists \delta > 0 . \forall x, y \in A : |x-y| < \delta \implies |f(x) - f(y)| < \epsilon 
+\end{align*}
+
+\subsection{Definition (review): Lipschitz continuity}
+\textbf{Source: Lecture 12}
+
+A function $f: A \to \R$ is called Lipschitz continuous if 
+\begin{align*}
+    \exists M. \forall x,y \in A : |f(x) - f(y)| \leq M |x-y| 
+\end{align*}
+
+\subsection{Definition (review): uniform convergence }
+\textbf{Source: Lecture 12}
+
+A sequence of functions $f_n: A \to \R$ converges uniformly on $A$ to a function $f: A \to \R$ if 
+\begin{align*}
+    \forall \epsilon > 0 . \exists N \in \mathbb{N}. \forall x \in A . \forall n \geq N: |f_n(x) - f(x)|< \epsilon
+\end{align*}
+
+\subsection{Definition: uniform boundedness}
+\textbf{Source: Lecture 12}
+
+If $F = \{f_\alpha\}_{\alpha \in A}$ is a set of functions $f_\alpha: E \subseteq \R^n \to \R^m$, then we say that $F$ is uniformly bounded if 
+\begin{align*}
+    \exists M.\forall x \in E.\forall \alpha \in A.|f_\alpha (x)| < M
+\end{align*}
+
+\subsection{Definition: equicontinuity}
+\textbf{Source: Lecture 12}
+
+If $F = \{f_\alpha\}_{\alpha \in A}$ is a set of functions $f_\alpha: E \subseteq \R^n \to \R^m$, then we say that $F$ is equicontinuous on $E$ if 
+\begin{align*}
+    \forall \epsilon > 0 .\exists \delta > 0. \forall y \in E. \forall \alpha \in A. |x-y| < \delta \implies |f_\alpha(y) - f_\alpha(x)| < \epsilon 
+\end{align*}
+
+\subsection{Claims about equicontinuity:}
+\textbf{Source: Lecture 12}
+\begin{enumerate}
+    \item Equicontinuity implies uniform continuity 
+    \item Bounded gradients imply equicontinuity
+    \item A finite family of uniformly continuous functions is equicontinuous
+\end{enumerate}
+
+\subsection{Lemma: Mean-value theorem for vector-valued functions}
+\textbf{Source: Wikipedia}
+
+Let $U \subseteq \R^n$ be open, $f: U \to \R^m$ continuously differentiable, and $x \in U, h \in \R^n$ vectors such that the line segment $x+th$ (where $0 \leq t \leq 1)$ remains in $U$. Then, we have
+\begin{align*}
+    f(x+h) - f(x) = \Big(\int_0^1 Df(x+th) dt \Big) \cdot h
+\end{align*}
+
+\subsection{Lemma: mean-value inequality}
+\textbf{Source: Wikipedia}
+
+If the norm of $Df(x+th)$ is bounded by some constant $M$ for $t \in [0,1]$, then 
+\begin{align*}
+    ||f(x+h) - f(x) || \leq M ||h|| 
+\end{align*}
+
+\subsection{Definition: complete metric space}
+\textbf{Source: Munkes' Topology Page 264}
+
+Let $(X,d)$ be a metric space. A sequence $(x_n)$ of points of $X$ is said to be a \textbf{Cauchy sequence} in $(X,d)$ if it has the property that given $\epsilon > 0$, there is an integer $N$ such that $\forall n, m \geq N$, 
+\begin{align*}
+    d(x_n, x_m) < \epsilon
+\end{align*}
+The metric space $(X,d)$ is said to be \textbf{complete} if every Cauchy sequence in $X$ converges [to a point in $X$]. 
+
+\subsection{Claim: $(C[0,1], ||\cdot||_\infty)$ is complete}
+\textbf{Source: Lecture 12}
+
+Continuous functions on $[0,1]$, denoted $C[0,1]$, with the infinity norm $|| \cdot ||_\infty$ is a complete metric space. 
+
+\subsection{Theorem: uniformly convergent continuous functions on compact sets} 
+\textbf{Source: Lecture 12}
+
+Let $f_k: E \subseteq \R^n \to \R^m$ be continuous functions. If $E$ is compact, and each $f_k$ converges uniformly to $f$, then $\{f_k\}$ is uniformly bounded and equicontinuous. 
+
+\subsection{Theorem: Ascoli-Arzelà}
+\textbf{Source: Lecture 12}
+
+If $F = \{f_\alpha\}_{\alpha \in A}$, where each $f_\alpha: E \subseteq \R^n \to \R^m$ for $E$ bounded, is an infinite family of functions that is uniformly bounded and equicontinuous, then there exists a subsequence of functions $\{f_n\}$ in $F$ that converge uniformly in $E$. 
+
+\subsection{Definition: relatively compact}
+\textbf{Source: Lecture 12}
+
+A set $B$ in a metric space is said to be relatively compact if $\overline{B}$ is compact. 
+
+\subsection{Corollary to Ascoli-Arzelà} 
+\textbf{Source: Lecture 12}
+
+A set $A \subseteq C[K, \R^m)$ (with $K \subseteq \R^n$ compact) is relatively compact in $||\cdot ||_\infty \Longleftrightarrow A$ is uniformly bounded and equicontinuous. 
+
+\subsection{Lemma: function approximation}
+\textbf{Source: Lecture 12}
+
+Let $f : B(0,r) \in \R^n \to \R^n$ be a continuous function. Let $F: \R^n \to \R^n$ such that
+\begin{align*}
+    F(x) = \begin{cases}
+    f(x) & |x| \leq r \\
+    f(r\cdot \frac{x}{|x|}) & |x| > r
+    \end{cases}
+\end{align*}
+Then, $F$ is continuous on $\R^n$ and $F\Big|_{\overline{B(0,r)}} = f$
+
+\subsection{Banach contraction mapping theorem}
+\textbf{Source: Tutorial 6}
+
+Let $d(x,y)$ be a metric on a set $X$. Assume that the metric space $X$ is complete. Let $F : X \to X$ be a function and $0 \leq q < 1$ a constant. If 
+\begin{align*}
+    d(F(x), F(y)) \leq qd(x,y) \tag{$\forall x, y \in X$}
+\end{align*}
+Then, $F$ has a unique fixed point (i.e. $F(x) = x$ has exactly one solution in $X$). Such a function $F$ is called a contraction on $X$
+
+\subsection{Brouwer's fixed point theorem}
+\textbf{Source: Lecture 12}
+
+Let $T: \overline{B(0,1)}\to \overline{B(0,1)}$ such that $B(0,1) \subseteq \R^n$ be a continuous function. Then, $T$ has at least one fixed point (i.e. $\exists z$ such that $T(z) = z$) 
+
+\subsection{Schauder-Tychonoff fixed-point theorem}
+\textbf{Source: Lecture 12}
+
+Let $E = (C([0,1], \R^n), ||\cdot||_\infty)$. Let $B = \{f \in E: ||f||_\infty \leq 1 \}$ be the unit ball in $E$. Let $T: B \to B$ be a continuous map (with respect to $||\cdot||_\infty$) (i.e. convergent sequences go to convergent sequences) such that $T(B)$ is relatively compact. Then, $T$ has a fixed point. 
+
+Note: instead of assuming $T(B)$ to be relatively compact, we could have just as well assumed it equicontinous and uniformly bounded for we have the corollary to the Ascoli-Arzela theorem.
+
+\subsection{Claim: IEq $\Longleftrightarrow$ IVP}
+\textbf{Source: Lecture 13}
+
+\textbf{The initial value problem (IVP):}
+Recall that the initial value problem is as follows. Given a continuous function $f: [t_0, t_1] \times \R^n \to \R^n$ with $v = \xi_0 \in\R^n$, find, if possible, a continuously differentiable function $x: [t_0, t_1] \to \R^n$ such that
+\begin{align*}
+    \begin{cases}
+    x'(t) = f(t, x(t)) \\
+    x(t_0) = \xi_0 
+    \end{cases}
+\end{align*}
+
+\textbf{The integral equation (IEq):} Consider the following problem. Given a continuous function $f: [t_0, t_1] \times \R^n \to \R^n$ with $v = \xi_0 \in\R^n$, find, if possible, a continuously differentiable function $x: [t_0, t_1] \to \R^n$ such that $\forall t \in [t_0, t_1]$, 
+\begin{align*}
+    x(t) = \xi_0 + \int_{t_0}^t f(s, x(s)) ds
+\end{align*}
+Note: It is often reformulated as follows: If 
+\begin{align*}
+    (Tx)(t) = \xi_0 + \int_{t_0}^t f(s, x(s)) ds
+\end{align*}
+then find a fixed-point $Tx = x$. \medskip 
+
+\subsection{Theorem: Cauchy-Peano}
+\textbf{Source: Lecture 13, \href{https://en.wikipedia.org/wiki/Peano_existence_theorem\#:~:text=In\%20mathematics\%2C\%20specifically\%20in\%20the,to\%20certain\%20initial\%20value\%20problems.}{Wikipedia}}
+
+Let $f: [t_0, t_1] \times \R^n \to \R^n$ be a continuous and bounded function with $\xi_0 \in\R^n$. Then, the initial value problem 
+\begin{align*}
+    \begin{cases}
+    x'(t) = f(t, x(t)) \\
+    x(t_0) = \xi_0 
+    \end{cases}
+\end{align*}
+has at least one solution $x(t)$ on $[t_0, t_1]$.
+
+\subsection{Euler's polygonal/method:} 
+\textbf{Source: Lecture 13}
+
+For $x'(t) = f(t, x(t))$, we can find a numerical solution at $x_{j+1}$ by 
+\begin{align*}
+    \frac{x_{j+1} - x_j}{t_{j+1} - t_j} &= f(t_j, x_j) \tag{take $t_j = j\tau $ for all $j$}\\
+    x_{j+1} &= x_j + \tau f(j\tau, x_j) 
+\end{align*}
+This is a recursion that we can solve, given initial conditions. The piecewise affine (linear) function obtained is a good approximation of the solution as $\tau \to 0$. 
+
+\subsection{Zorn's lemma}
+\textbf{Source: Lecture 14}
+
+There exists a maximal element $(x^*, I^*)$ which is a continuation of $(x, I)$. Then, for all possible continuations $(\overline{x}, \overline{I})$ of $(x, I)$, we can write
+\begin{align*}
+    I^* = \bigcup \overline{I} ~~~~\text{and}~~~~ x^*|_{\overline{I}_i} = \overline{x}_i(t)
+\end{align*}
+This holds analogously for extension to the left.
+
+\subsection{Theorem: existence and continuation of solutions}
+\textbf{Source: Lecture 14}
+
+Let $h> 0$, $a > 0$ and define $A = [t_0 - h, t_0 + h] \times \overline{B_a(\xi_0)}$. Let $f: A \to \R^n$ be a continuous function with $m := \sup \{|f(t, \xi)|: (t, \xi) \in A\} < \infty$. Let $(t_0, \xi_0) \in \R \times \R^n$. Then, 
+\begin{align*}
+    (IVP): \begin{cases}
+        x'(t) = f(t, x(t)) \\
+    x(t_0) = \xi_0
+    \end{cases}
+\end{align*}
+has at least one solution $x$ defined on $I = [t_0 - \min(h, \frac{a}{m}), t_0 + \min(h, \frac{a}{m})]$ and any solution to the IVP defined on $J \subseteq I$, where $J$ is a neighbourhood of $t_0$, can be continued to $I$. 
+
+\subsection{Theorem: Picard–Lindelöf}
+\textbf{Source: Lecture 14, TP Theorem 58.5\footnote{TP's Theorem 58.5 assumes that $f$ is bounded, but this is not necessary because we can take a closed subset of $D$, on which $f$ would be bounded.}, \href{https://en.wikipedia.org/wiki/Picard\%E2\%80\%93Lindel\%C3\%B6f_theorem}{Wikipedia}}\footnote{Also known as Picard's existence theorem, the Cauchy-Lipschitz theorem or the existence and uniqueness theorem.}
+
+Let $D \in \R \times \R^n$ be a closed rectangle with $(x_0, y_0) \in D$. Let $f: D \to \R^n$ be a function that is continuous in $x$ and Lipschitz in $y$. Consider the initial value problem
+\begin{align*}
+    \begin{cases}
+            y'(x) = f(x,y(x)) \\
+            y(x_0) = y_0 
+    \end{cases}
+\end{align*}
+Then, there exists $a > 0$ such that the initial value problem has a unique solution $y(x)$ on $[x_0 - a, x_0 + a]$. 
+
+
+\subsection{Claim: the Picard map}
+\textbf{Source: Lecture 14}
+
+Let $f: D \to \R^n$ be a function that is continuous in $x$ and Lipschitz in $y$ with Lipschitz constant $K$. There exists a map $\Gamma: C[x_0 - a, x_0 + a] \to C[x_0 - a, x_0 + a]$ such that 
+\begin{align*}
+    \Gamma y (x) &= y_0 + \int_{x_0}^x f(s, y(s)) ds 
+\end{align*}
+Moreover, if we find a $y \in C[x_0 - a, x_0 + a]$ such that $\Gamma y = y$, then $y$ is a solution of the IEq ($\Longleftrightarrow$ $y$ is a solution of the IVP). 
+
+\subsection{Claim: Picard map satisfies conditions of BCMT}
+\textbf{Source: Lecture 14}
+$$\exists 0 \leq q < 1. \forall x, y \in C[x_0 - a, x_0 + a]. ~||\Gamma(y) - \Gamma(z)||\leq q||y-z||$$
+
+\subsection{Theorem: Gronwall's inequality}
+\textbf{Source: Lecture 15}
+
+If $U'(x) \leq K(x) U(x)$ where $K(x)$ is continuous and $U(x)$ is differentiable for $x \geq x_0$, then, 
+\begin{align*}
+    U(x) \leq U(x_0) e^{\int_{x_0}^x K(t) dt}
+\end{align*}
+That is, $U \leq$ the solution to the case with equality. 
+
+\subsection{Osgood's uniqueness theorem}
+\textbf{Source: Mary Pugh Notes: Osgood's uniqueness theorem, Lecture 16}
+
+Consider the initial value problem 
+\begin{align*}
+    \begin{cases}
+    y' = f(x,y) \\
+    y(x_0) = y_0
+    \end{cases}
+\end{align*}
+Let $D \subseteq \R \times \R^n$ be an open set containing $(x_0, y_0)$. Assume that for all $(x, y_1), (x, y_2) \in D$, 
+\begin{align*}
+    |f(x, y_1) - f(x, y_2)| \leq \phi(|y_1 - y_2|)
+\end{align*}
+for some continuous function $\phi: [0, \infty) \to [0, \infty)$ such that $\phi(u) > 0$ and $\phi(0) = 0$ and 
+\begin{align*}
+    \int_0^1 \frac{du}{\phi(u)} = + \infty 
+\end{align*}
+Then, no more than one solution passes through $(x_0, y_0)$. 
+
+\subsection{Theorem: behaviour at finite maximal time of existence} 
+\textbf{Source: HSD Page 146}
+
+Let $U \subseteq \R^n$ be an open set, and let $F: U \to \R^n$ be $C^1$. Let $X(t)$ be a solution of $X' = F(X)$ defined on a maximal open interval $J = (\alpha, \beta) \subseteq \R$ with $\beta < \infty$. Then, given any closed and bounded set $K \subseteq U$, there is some $t \in (\alpha, \beta)$ with $X(t) \notin K$. 
+
+\subsection{Lemma: locally Lipschitz}
+\textbf{Source: Lecture 16}
+
+A continuously differentiable function $f: D \subseteq \R^n \to \R^m$ is locally Lipschitz on all compact $K \subseteq D$ with the Lipschitz constant $L$
+\begin{align*}
+    L = \sup_{K} ||Df(x)||
+\end{align*}
+
+\subsection{Theorem: global existence and uniqueness}
+\textbf{Source: Lecture 16}
+
+For $D \subseteq \R^n$ open and connected, $f: D \to \R^n$ a locally Lipschitz vector field and $v \in D$, the IVP 
+\begin{align*}
+    (IVP): \begin{cases}
+    x'= f(x) \\
+    x(0) = v
+    \end{cases}
+\end{align*}
+has a unique solution on the maximal interval of existence. If the maximal interval of existence does not cover all time and $\overline{T}$ is the maximum time for which it is defined, then 
+\begin{align*}
+    \lim_{t \to \overline{T}^-} |x(t)| + \frac{1}{d(x(t), \partial D) } = + \infty
+\end{align*}
+In other words, either $|x(t)| \to \infty$ or $x(t) \to \partial D$. 
+
+\subsection{Corollary to global existence and uniqueness}
+\textbf{Source: HSD Page 397}
+
+Let $C$ be a compact subset of the open set $\mathcal{O} \subseteq \R^n$ and let $F: \mathcal{O} \to \R^n$ be $C^1$. Let $Y_0 \in C$ and suppose that every solution curve of the form $Y: [0, \beta] \to \mathcal{O}$ with $Y(0) = Y_0$ lies entirely in $C$. Then, there is a solution $Y: [0, \infty) \to \mathcal{O}$ satisfying $Y(0) = Y_0$, and $Y(t) \in C$ for all $t \geq 0$, so this solution is defined for all (forward) time. 
+
+
+\section{Solving nonlinear systems}
+\subsection{Theorem: Gronwall's inequality (generalised)}
+\textbf{Source: MAT267 Lecture 17}
+
+If $f: [a,b] \to \R$, $g: [a,b] \to \R^+$ and $y: [a,b] \to \R$ are continuous functions such that $\forall t\in [a,b]$, 
+\begin{align*}
+    y(t) \leq f(t) + \int_a^t g(s) y(s) ds
+\end{align*}
+Then, $\forall t \in [a,b]$, 
+\begin{align*}
+    y(t) \leq f(t) + \int_a^t f(s)g(s)\exp\Big(\int_s^t g(u)du\Big) ds
+\end{align*}
+In particular, if $f(t) \equiv k$ for some constant $k$, then, 
+\begin{align*}
+    y(t) \leq k \exp\Big(\int_a^t g(s) ds \Big) 
+\end{align*}
+
+\subsection{Theorem: bound on difference between functions}
+\textbf{Source: MAT267 Lecture 18}
+
+Let $x_1: [a,b] \to \R^n$ and $x_2: [a,b] \to \R^n$ be differentiable functions such that $$|x_1(a) - x_2(a)| \leq \delta$$ Let $f: [a,b] \times \R^n \to \R^n$ be a function that is Lipschitz in the second variable such that for $t \in [a,b]$ and $\xi_1, \xi_2 \in \R^n$, $$|f(t, \xi_1) - f(t, \xi_2)| \leq L|\xi_1 - \xi_2|$$
+Assume that for $t \in [a,b]$, 
+\begin{align*}
+    |x_1'(t) - f(t, x_1(t))| &\leq \epsilon_1 \\
+    |x_2'(t) - f(t, x_2(t))| &\leq \epsilon_2 
+\end{align*}
+Then, 
+\begin{align*}
+    |x_1(t) - x_2(t)| \leq \delta e^{L(t-a)} + (\epsilon_1 + \epsilon_2) \frac{e^{L(t-a)} - 1}{L}
+\end{align*}
+
+\subsection{Corollary (to 3.2, when $\delta = 0$)}
+\textbf{Source: MAT267 Lecture 18, HSD Chapter 17.5}
+
+Let $A(t)$ be a continuous family of $n \times n$ matrices. Let $(t_0, X_0) \in I \times \R^n$, Then, the initial value problem 
+\begin{align*}
+    X' = A(t) X, ~~~~~~~~~~~~~~~~~~ X(t_0) = X_0
+\end{align*}
+has a unique solution on all of $I$. Moreover, the solution is given by 
+\begin{align*}
+    X(t) = X_0 \exp\Big(\int_{t_0}^t A(s) ds\Big)
+\end{align*}
+
+\subsection{Proposition: approximation of nearby solutions}
+\textbf{Source: MAT267 Lecture 18, HSD 17.6}
+
+Let $J$ be the closed interval containing $0$ on which $X(t)$ solves the initial value problem 
+\begin{align*}
+    x' &= f(x) \\
+    x(0) &= x_0
+\end{align*}
+Then, $u(t, \xi)$ solves the variational equation 
+\begin{align*}
+    u' &= A(t) u \\
+    u(0, \xi) &= \xi 
+\end{align*}
+where $A(t) = Df(x(t))$. Assume $\xi, x_0 + \xi \in D$ where $f: D \subseteq \R^n \to \R^n$ is defined. Assume $y(t)$ solves 
+\begin{align*}
+    y'(t) &= f(y) \\
+    y(0) &= x_0 + \xi 
+\end{align*}
+Then, 
+\begin{align*}
+    \lim_{\xi \to 0} \frac{|y(t, \xi) - x(t) - u(t, \xi)|}{|\xi|}
+\end{align*}
+converges to 0 uniformly for $t \in J$. Alternatively, 
+\begin{align*}
+    \forall \epsilon > 0 \exists \delta > 0 : |\xi| \leq \delta \implies |y(t, \xi) - x(t) - u(t, \xi)| \leq \epsilon |\xi| \tag{$\forall t \in J$}
+\end{align*}
+
+\subsection{Theorem: the flow of $x' = f(x)$ for $f \in C^1$ is $C^1$}
+If $\phi(t, X)$ is the flow of $x' =f(x)$ where $f: D \to \R^n$ is $C^1$, then the flow is a $C^1$ function, that is $\frac{\partial \phi}{\partial t}$ and $\frac{\partial \phi}{\partial x}$ exist and are continuou in $t$ and $X$. 
+
+\subsection{Definition: stable equilibrium}
+\textbf{Source: MAT267 Lecture 20, HSD 8.4}
+
+Let $(\Phi_t)_{t \geq 0}$ be a dynamical system on $D \subseteq \R^n$. In other words, 
+\begin{align*}
+    \Phi_0 = I \text{ and } \Phi_{s \circ t} = \Phi_s \circ \Phi_t
+\end{align*}
+Let $a$ be an equilibrium (also known as a steady state or a fixed point). Alternatively, let $a$ be such that $\forall t. \Phi_t(a) = a$. We say that $a$ is stable if 
+\begin{align*}
+    \forall \epsilon > 0. \exists \delta > 0 : |x-a| < \delta \implies \sup_{t \geq 0} |\Phi_t(x) - a| < \epsilon
+\end{align*}
+
+\subsection{Definition: unstable equilibrium}
+\textbf{Source: MAT267 Lecture 20, HSD 8.4}
+
+The equilibrium at $x(t) \equiv a$ is unstable if 
+\begin{align*}
+    \exists \epsilon > 0 \forall \delta > 0 : |x - a| < \delta \text{ AND } \sup_{t \geq 0} |\Phi_t(x) - a| \geq \epsilon 
+\end{align*}In other words, we need to find a sequence of points $\{ x_j\}$ that converges to $a$ such that $\sup_{t \geq 0} |\Phi_t(x_j) - a| \geq \epsilon$ for all $j = 1,2,3, \cdots$
+
+
+\subsection{Definition: asymptotically stable}
+\textbf{Source: MAT267 Lecture 20, HSD 8.4}
+
+The equilibrium at $x(t) \equiv a$ is asymptotically stable (also known as attractive) if 
+\begin{enumerate}
+    \item $a$ is stable 
+    \item $\exists \delta > 0 \forall x : |x-a| < \delta \implies \lim_{t \to \infty} |\Phi_t(x) - a| = 0$. 
+\end{enumerate}
+
+\subsection{Definition: hyperbolic}
+\textbf{Source: HSD 4.2, MAT267 Lecture 20}
+
+A matrix $A$ is hyperbolic if none of its eigenvalues have nonzero real part. The system $X' = AX$ is then also called hyperbolic. 
+
+\subsection{Theorem: Hartman-Grobman / linearization}
+\textbf{Source: MAT267 Lecture 20, HSD Page 168, \href{https://en.wikipedia.org/wiki/Hartman\%E2\%80\%93Grobman_theorem\#:~:text=In\%20mathematics\%2C\%20in\%20the\%20study,of\%20a\%20hyperbolic\%20equilibrium\%20point.}{Wikipedia}}
+
+Consider $x' = f(x)$ with $f \in C^1 $ and an equilibrium point at $a$. Let $A = Df(a)$. Assume that $A$ is hyperbolic. Let $\Phi_t$ be the dynamical system for $x' = f(x)$ and $\phi_t = e^{tA}$ the dynamical system for its linearization. Then, there exists a neighbourhood $U \ni a$ and $V \ni 0$ such that there exists a homeomorphism $h: U \to V$ with 
+\begin{align*}
+    \Phi_t = h^{-1} \circ \phi_t \circ h
+\end{align*}
+on $U$ if $t$ is small enough. 
+
+\subsection{Lemma: change of coordinates at equilibrium}
+\textbf{Source: HSD Q8.11, MAT267 Lecture 20}
+
+Consider the system $X' = F(X)$ where $X \in \R^n$. Suppose that $F$ has an equilibrium point at $X_0$. Then, there is a change of coordinates that moves $X_0$ to the origin and converts the system to 
+\begin{align*}
+    X' = AX + G(X)
+\end{align*}
+where $A$ is an $n \times n$ matrix, which is the canonical form of $DF(X_0)$ and where $G(X)$ satisfies 
+\begin{align*}
+    \lim_{|X| \to 0} \frac{|G(X)|}{|X|} = 0
+\end{align*}
+
+\subsection{Lemma: negative distinct eigenvalues $\Longleftrightarrow$ asymptotically stable}
+\textbf{Source: MAT267 Lecture 20}
+
+Consider a system $x = f(x)$ with $f \in C^1$ and an equilibrium at $a$. If $A = Df(a)$ has negative and distinct real eigenvalues, then $a$ is asymptotically stable (also known as a sink). 
+
+\subsection{Definition: Lyapunov functions}
+\textbf{Source: MAT267 Lecture 20}
+
+A function $L: U \subseteq \R^n \to \R^n$ is called a Lyapnunov function for a system $x' = f(x)$ on a neighbourhood $U \ni 0$ if $L$ is nonincreasing along solutions. In other words,
+\begin{align*}
+    \frac{d}{dt}L(x(t)) \leq 0 
+\end{align*}
+We say that the Lyapunov function is strict if 
+\begin{align*}
+    \frac{d}{dt}L(x(t)) < 0 
+\end{align*}
+
+\subsection{Theorem: implicit function theorem}
+\textbf{Source: MAT257}
+
+Given $f: \mathbb{R}^n_x \times \mathbb{R}^k_y \to \mathbb{R}^k$ continuouly differentiable near $(a,b) \in \mathbb{R}^n \times \mathbb{R}^k$ with $f(a,b) = 0 $ and $\frac{\partial f}{\partial y}$ invertible. Then, there is an open neighbourhood $A \ni a$ and a neighbourhood of $B \ni b$ and a unique function (continuously differentiable) $g: A \to B$ such that $f(x,g(x)) = 0$ for all $x \in A$. Finally, 
+\begin{align*}
+    g' = - \bigg(\frac{\partial f}{\partial y}\bigg)^{-1} \cdot \frac{\partial f}{\partial x}
+\end{align*} 
+
+\subsection{Definition: nullclines}
+For a system in the form 
+\begin{align*}
+    x_1' &= f_1(x_1, \cdots, x_n) \\
+    \vdots \\
+    x_n' &= f_n(x_1, \cdots, x_n)
+\end{align*}
+the $x_j$ nullcline is the set of points where $x_j' = f_j(x_1, \cdots, x_n) = 0$. 
+
+\subsection{Definition: $\omega$- and $\alpha$- limit sets}
+The set of all points that are limit points of a given solution is called the set of $\omega$-limit points, or the $\omega$-limit set, of the solution $X(t)$. Similarly, we define the set of $\alpha$-limit points, or the $\alpha$-limit set, of a solution $X(t)$ to be the set of all points $Z$ such that $\lim_{n \to \infty} X(t_n)= Z$ for some sequence $t_n \to - \infty$. 
+
+\subsection{Theorem: saddle-node bifurcation} 
+Suppose $f_a$ is a function that depends on $a$ in a $C^\infty$ fashion and suppose $x' = f_a(x)$ is a first-order differential equation. If
+\begin{enumerate}
+    \item $f_{a_0}(x_0) = 0$
+    \item $f_{a_0}'(x_0) = 0$
+    \item $f_{a_0}''(x_0) \neq 0$
+    \item $\dfrac{\partial f_{a_0}}{\partial a} \neq 0$
+\end{enumerate}
+then this differential equation undergoes a saddle-node bifurcation at $a = a_0$. 
+
+\subsection{Proposition: properties of limit sets}
+\emph{Source: HSD P217}
+\begin{enumerate}
+    \item If $X$ and $Z$ lie on the same solution curve, then $\omega(X) = \omega(Z)$ and $\alpha(X) = \alpha(Z)$; 
+    \item If $D$ is a closed, positively invariant set and $Z \in D$, then $\omega(Z) \subseteq D$, and similarly for negatively invariant sets and $\alpha$-limits; 
+    \item A closed invariant set, in particular, a limit set, contains the $\alpha$-limit and $\omega$-limit sets of every point in it. 
+\end{enumerate}
+
+\subsection{Definition: Hamiltonian systems}
+\textbf{Source: MAT267 Lecture 24, HSD 9.4}
+
+A Hamiltonian system on $\R^2$ is a system of the form 
+\begin{align*}
+    x' &= \frac{\partial H}{\partial y}(x,y) \\
+    y' &= - \frac{\partial H}{\partial x}(x,y) 
+\end{align*}
+where $H: \R^2 \to \R$ is a $C^\infty$ function called the Hamiltonian function.
+
+\subsection{Proposition: equivalent definition of Hamiltonian systems}
+\textbf{Source: MAT267 Lecture 24}
+
+An equivalent definition of Hamiltonian systems is a differential equation of the form 
+\begin{align*}
+    x'' = - \nabla V(x) 
+\end{align*}
+where $V: D \to \R$ is a $C^2$ function. 
+
+\subsection{Proposition: Lyapunov function for Hamiltonian systems}
+\textbf{Source: MAT267 Lecture 24}
+
+The Lyapunov function for a Hamiltonian system is given by 
+\begin{align*}
+    L(x,y) = \frac{1}{2}|y|^2 + V(x) 
+\end{align*}
+This has the property that 
+\begin{align*}
+    \frac{dL}{dt}(x,y) = 0 
+\end{align*}
+
+
+\end{document}

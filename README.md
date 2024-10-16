@@ -1,6 +1,6 @@
 # mathematics
 
-This is a repository to make publicly available all the notes I took for mathematics courses in my undergraduate study. Some are typeset, others are handwritten; some are lecture notes, others are summaries. A lot (most) of these are incomplete, and I make no promises of completing them.
+This is a repository to make publicly available all the notes I took/made for mathematics courses in my undergraduate study. Some are typeset, others are handwritten; some are lecture notes, others are summaries. A lot (most) of these are incomplete, and I make no promises of completing them.
 
 Here is a summary of which courses I made the notes for: 
 
@@ -12,6 +12,7 @@ Handwritten:
 
 Typeset: 
 * ``ODEs-theorem-list``: MAT267: Advanced Ordinary Differential Equations taught by Professor Ignacio Uriarte-Tuero in Winter 2022. Incomplete. 
+* ``analysis-I-theorem-list``: MAT157: Analysis I taught by Professor Eckhard Meinrenken in the academic year 2020-2021. Incomplete. 
 * ``complex-analysis-notes``: MAT354: Complex Analysis taught by Professor Edward Bierstone in Fall 2022. Incomplete. 
 * ``group-theory-notes``: 402-0883-63 S: Symmetries in Physics at ETH Zurich taught by Professor Niklas Beisert in Spring 2023. Incomplete.
 

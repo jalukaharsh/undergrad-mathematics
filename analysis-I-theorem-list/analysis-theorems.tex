@@ -1,0 +1,639 @@
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{geometry}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{8pt}
+\usepackage{graphicx}
+\usepackage{multicol}
+\usepackage{mathrsfs}
+\usepackage[shortlabels]{enumitem}
+\usepackage{hyperref}
+\usepackage{siunitx}
+\usepackage{braket}
+\usepackage[font=small, labelfont=bf]{caption}
+
+\allowdisplaybreaks
+
+\title{MAT157: Analysis I - Theorems}
+\author{Harsh Jaluka}
+\date{\today}
+
+\begin{document}
+
+\begin{titlepage}
+\maketitle 
+\end{titlepage}
+
+
+\newpage
+\begin{center}
+    \section*{Integration}
+\end{center}
+
+
+\textbf{Definition 12.1}: A \textit{partition} of $[a,b]$ is a finite subset $\mathcal{P} \subseteq [a, b]$ with $a, b \in \mathcal{P}$. A partition $\mathcal{Q}$ of $[a,b]$ is called a \textit{refinement} of $\mathcal{P}$ if $\mathcal{P} \subseteq \mathcal{Q}$
+
+\textbf{Proposition 12.2}: If $\mathcal{P}, \mathcal{Q}$ are partitions of $[a, b]$, with $\mathcal{P} \subseteq \mathcal{Q}$, then 
+\begin{align*}
+    L(f, \mathcal{P}) \leq L(f, \mathcal{Q}), ~~~~U(f, \mathcal{P}) \geq U(f, \mathcal{Q})
+\end{align*} 
+
+\textbf{Proposition 12.3}: For any two partitions $\mathcal{P}_1, \mathcal{P}_2$, one has that $L(f, \mathcal{P}_1) \leq U(f, \mathcal{P}_2)$.
+
+\textbf{Lemma 12.5}: For any bounded function $f: [a,b] \to \mathbb{R}$, $L(f) \leq U(f)$.
+
+\textbf{Definition 12.6}: The bounded function $f:[a,b] \to \mathbb{R}$ is called \textit{integrable} if $L(f) = U(f)$. In this case, the common number $L(f) = U(f)$ is denoted by 
+\begin{align*}
+    \int_a^b f
+\end{align*}
+or (in Leibniz notation)
+\begin{align*}
+    \int_a^b f(x) dx
+\end{align*} 
+
+\textbf{Therorem 12.10}: (Riemann criterion). A bounded function $f:{a,b} \to \mathbb{R}$ is integrable if and only if for all $\epsilon > 0$, there exists a partition $\mathcal{P}$ such that
+\begin{align*}
+    U(f, \mathcal{P}) - L(f, \mathcal{P}) < \epsilon 
+\end{align*}
+
+\textbf{Lemma 12.11}: Let $A \subseteq \mathbb{R}$ be a subset, and let $f: A \to \mathbb{R}$ be a bounded function. If 
+\begin{align*}
+    M = \sup\{f(x): x \in A\}, ~~~~ m = \inf\{f(x): x \in A\}
+\end{align*}
+Then, 
+\begin{align*}
+    M - m = \sup\{|f(x) - f(y)|: x,y \in A\}
+\end{align*}
+
+
+\textbf{Theorem 12.12}: If $f:[a,b] \to \mathbb{R}$ is continuous, then $f$ is integrable.
+
+\textbf{Theorem 12.13}: If $f: [a,b] \to \mathbb{R}$ is weakly increasing or weakly decreasing, then $f$ is integrable.
+
+\textbf{Lemma 12.131}: Given a set $A$ and functions $f, g: A \to \mathbb{R}$, we have that 
+\begin{align*}
+    \inf(f(A)) + \inf(g(A)) \leq \inf((f+g)(A))
+\end{align*}
+and
+\begin{align*}
+    \sup(f(A)) + \sup(g(A)) \geq \sup((f+g)(A))
+\end{align*}
+
+
+\textbf{Theorem 12.14}: (Linearity of the integral). Suppose $f,g:[a,b] \to \mathbb{R}$ are bounded and integrable. Then $f+g$ is integrable, and 
+\begin{align*}
+    \int_a^b (f+g) = \int_a^b f + \int_a^b g
+\end{align*}
+Furthermore, given $\lambda \in \mathbb{R}$, the function $\lambda f$ is integrable, and 
+\begin{align*}
+    \int_a^b (\lambda f) = \lambda \int_a^b f
+\end{align*}
+
+\textit{Remark 12.15}: Put differently, the theorem says that the set $\mathcal{R}([a,b])$ of bounded, integrabe functions on $[a,b]$ is a subspace of the vector space of all functions, with integration a linear functional on that vector space. (An element of the dual space.)
+
+\textit{Remark 12.16}: One consequence of this result is that if $f_1, f_2$ differ only at finitely many points, then $f_1$ is integrable if and only if $f_2$ is integrable, and in this case
+\begin{align*}
+    \int_a^b f_1 = \int_a^b f_2 
+\end{align*}
+
+\textbf{Theorem 12.17}: (Properties of the integral). Suppose $f, g:[a,b] \to \mathbb{R}$ are bounded and integrable. Then:
+\begin{enumerate}
+    \item [(a)] $\max(f,g), \min(f,g), |f|$ are integrable.
+    \item [(b)] The product $fg$ is integrable.
+    \item [(c)] If $[c,d] \subseteq [a,b]$, the the restriction $f|_{[c,d]}$ is integrable.
+    \item [(d)] (Monotonicity) If $f \leq g$, then 
+    \begin{align*}
+        \int_a^b f \leq \int_a^b g
+    \end{align*}
+    In particular, 
+    \begin{align*}
+        |\int_a^b f| \leq \int_a^b |f|
+    \end{align*}
+\end{enumerate}
+
+For any subset $A \in \mathbb{R}$, let $\mathcal{X}_A$ be the characteristic function (or indicator function)
+\begin{align*}
+    \mathcal{X}_A (x) = 
+    \begin{cases}
+    1 & x \in A \\
+    0 & x \notin A
+    \end{cases}
+\end{align*} 
+
+\textbf{Lemma 12.19}: Let $f:[a,b] \to \mathbb{R}$ be bounded and $[c,d] \subseteq [a,b]$ a sub interval. Then $f$ is integrable over $[c,d]$ if and only if $\mathcal{X}_{[c,d]}$ is integrable over $[a,b]$. In this case, 
+\begin{align*}
+    \int_c^d f = \int_a^b \mathcal{X}_{[c,d]} f
+\end{align*}
+
+\textbf{Theorem  12.20} Suppose $a < b< c$, and let $f: [a,c] \to \mathbb{R}$ be bounded. Suppose $f$ is integrable over both $[a,b] $ and $[b,c]$. Then $f$ is integrable over $[a,c]$ and 
+
+\begin{align*}
+    \int_a^c f = \int_a^b f + \int_b^c f
+\end{align*}
+
+\textbf{Remark 12.21} Until now, we defined $\int_a^b f$ only when $a <b$. It is convenient to include the possibility $ a \geq b$, by putting 
+
+\begin{align*}
+    \int_a^a f = 0, ~~~ \int_a^b f = - \int_b^a f \tag{if $a >b$}
+\end{align*} 
+
+With these conventions, the formula in theorem 12.20 holds without any restrictions on $a,b,c$.  
+
+\newpage
+
+\begin{center}
+    \section*{The fundamental theorem of calculus}
+\end{center}
+
+\textbf{Theorem 12.24} Suppose $f: [a,b] \to \mathbb{R}$ is bounded and integrable. Then the function $F: [a,b] \to \mathbb{R}$ given by 
+\begin{align*}
+    F(x) = \int_a^x f(t) dt 
+\end{align*}
+is continuous on $[a,b]$. 
+
+\textbf{Theorem (Lipschitz continuity)} A function $F:A \to \mathbb{R}$ is called Lipschitz continuous if there exists $M > 0$ with property 
+
+\begin{align*}
+    \forall x,y \in A: |F(x) - F(y)| \leq M|x-y| 
+\end{align*}
+
+Lipschitz continuity implies uniform continuity. Assume the function is Lipschitz continuous and take $\delta = \frac{\epsilon}{M+1}$.
+
+\textbf{Theorem 12.26} (First fundamental theorem of calculus) Suppose $f:[a,b] \to \mathbb{R}$ is bounded and integrable, and let 
+
+\begin{align*}
+    F(x) = \int_a^x f(t) dt
+\end{align*}
+
+for $x \in [a,b]$. If $f$ is continuous at $x_0 \in (a,b)$, then $F$ is differentiable at $x_0$, with 
+\begin{align*}
+    F'(x_0) = f(x_0)
+\end{align*}
+
+\textbf{Lemma 12.27} Let $f: J \to \mathbb{R}$ be continuous at $x_0 \in J$ (where $J$ is an interval), and define $m_h, M_h$ as 
+\begin{align*}
+    m_h &= \inf \{f(x) | x \in [a,b], |x-x_0| \leq |h| \} \\
+    M_h &= \sup \{f(x) | x \in [a,b], |x-x_0| \leq |h| \} \\
+\end{align*}
+
+Then, $\lim_{h \to 0} m_h = f(x_0)$ and $\lim_{h \to 0} M_h = f(x_0)$.
+
+\textbf{Remark 12.28} Theorem 12.26 also gives, for $x \in (a,b)$, 
+
+\begin{align*}
+    \frac{d}{dx} \Big|_{x=x_0} \int_x^b f = -f(x_0)
+\end{align*}
+by writing the integral on the left as $\int_a^b f - \int_a^x f$.
+
+\textbf{Corollary 12.29} Let $J \subseteq \mathbb{R}$ be an open interval. Then any continuous function $f: J \to \mathbb{R}$ is the derivative of a function $F: J \to \mathbb{R}$. Furthermore, $F$ is unique up to an additive constant.
+
+\textbf{Definition 12.30} Suppose $J \subseteq \mathbb{R}$ is an open interval, and $f: J \to \mathbb{R}$ is a function. A function $F: J \to \mathbb{R}$ is called a primitive or anti-derivative of $f$ if 
+\begin{align*}
+    F' = f
+\end{align*}
+
+\textbf{Definition 12.33} The function $\log: (0, \infty) \to \mathbb{R}$ given by 
+\begin{align*}
+    \log(x) = \int_1^x \frac{1}{t}dt
+\end{align*}
+is called the (natural) logarithm.
+
+\textbf{Example 12.34} What is $\int_1^x \log(t) dt$? Note that 
+
+\begin{align*}
+    \frac{d}{dx}(x \log(x)) = \log(x) + 1
+\end{align*}
+Since $1 = \frac{dx}{dx}$, this shows that $F(x) = x\log(x) - x$ is a primitive of $\log(x)$. Now, the integration follows from FTC:
+\begin{align*}
+    \int_1^x \log(t) dt = F(x) - F(1) = x\log(x) - x + 1
+\end{align*}
+where we used $\log(1) = 0$. 
+
+\textbf{Theorem 12.36} (Second fundamental theorem of calculus). Suppose $f: [a,b] \to \mathbb{R}$ is bounded and integrable, and suppose $F: [a,b] \to \mathbb{R}$ is a continuous function that is differentiable on $(a,b)$ with $F' = f$ on $(a,b)$. Then 
+
+\begin{align*}
+    \int_a^b f = F(b) - F(a) 
+\end{align*}
+
+\textbf{Definition 12.38} The length of the curve sugment of $f: [a,b] \to \mathbb{R}$ from $(a, f(a))$ to $(b, f(b))$ is defined as 
+
+\begin{align*}
+    l(f) = \sup\{l(f, \mathcal{P})|\mathcal{P} \text{ is a partition} \}
+\end{align*}
+provided that the set $\{l(f, \mathcal{P})|\mathcal{P} \text{ is a partition} \}$ is bounded above. We put $(f) = \infty$ otherwise.
+
+\textbf{Theorem 12.39} Suppose $f: J \to \mathbb{R}$ is a differentiable function, with $f'$ continuous. For $a,b \in J$ with $a < b$, the length of the corresponding curve segment is finite, and is given by 
+
+\begin{align*}
+    l(f) = \int_a^b \sqrt{1 + (f')^2 }
+\end{align*}
+
+\textbf{Remark 12.40} More generally, suppose $f: [a,b] \to \mathbb{R}$ is a continuous function such that $f'$ exists and is continuous over $(a,b)$. Then it may be that $\sqrt{1+(f')^2}$ is unbounded. We still have
+
+\begin{align*}
+    l(f) = \int_a^b \sqrt{1+(f')^2}
+\end{align*}
+where the integral is defined as a limit if needed. 
+
+\newpage
+
+\begin{center}
+\section*{Area and circumference of a circle}
+\end{center}
+
+\textbf{Definition 12.41} The number $\pi$ is defined as
+\begin{align*}
+    \pi = 4 \int_0^1 \sqrt{1 - x^2}dx
+\end{align*}
+
+\textbf{Definition (circumference of unit circle)} We'll calculate it as 4 times the length of the arc in the upper right orthant, $f: [0,1] \to \mathbb{R}$, $f(x) = \sqrt{1 - x^2}$. We have that $f'(x) = -\frac{x}{\sqrt{1-x^2}}$, and so 
+
+\begin{align*}
+    1 + f'(x)^2 = 1 + \frac{x^2}{1-x^2} = \frac{1}{1-x^2}
+\end{align*}
+
+Hence, the length of the arc is 
+
+\begin{align*}
+    l(f) = \int_0^1 \frac{1}{\sqrt{1-x^2}}dx
+\end{align*}
+
+Since the function is unbounded near $x=1$, we define the integral as 
+
+\begin{align*}
+    \lim_{\epsilon \to 0^+} \int_0^{1- \epsilon} \frac{1}{\sqrt{1-x^2}}dx
+\end{align*}
+
+Using the following trick, 
+
+\begin{align*}
+    \frac{1}{\sqrt{1-x^2}} = 2\sqrt{1-x^2} - \frac{d}{dx}(x \sqrt{1-x^2})
+\end{align*}
+we get that the circumference of a unit circle is $2 \pi$. Doing the calculation more generally for a circle of radius $r > 0$, we get an area of $\pi r^2$ and a circumference $ 2 \pi r$. 
+
+\newpage
+
+\begin{center}
+    \section*{Improper integrals}
+\end{center}
+
+\textbf{Definition 12.44} Suppose the restriction of $f: (a,b) \to \mathbb{R}$ to any closed subinterval is bounded and integrable. Then, we define 
+\begin{align*}
+    \int_a^b f = \lim_{\epsilon \to 0^+} \int_{a+\epsilon}^c f + \lim_{\epsilon \to 0^+} \int_c^{b - \epsilon} f
+\end{align*}
+for any $c \in (a,b)$ provided that both of these limits exist.
+
+\textbf{Remarks 12.45} 
+\begin{itemize}
+    \item This definition does not depend on the choice of $c$: for any choice $c'$, the integrals change by the opposite amount: 
+    
+    \begin{align*}
+        \int_{a + \epsilon}^{c'} f = \int_{a+\epsilon}^c f + \int_c^{c'}f, ~~~~~~ \int_{c'}^{b - \epsilon}f = \int_c^{b-\epsilon} f - \int_c^{c'} f 
+    \end{align*}
+    
+    \item Note that we did not define the integral as $\lim_{\epsilon \to 0^+} \int_{a + \epsilon}^{b- \epsilon} f$; we really insist that the limits of both of the integrals exists separately.
+    
+    \item If $f = F'$ for a differentiable function $F: (a,b) \to \mathbb{R}$, the fundamental theorem of calculus gives us 
+    
+    \begin{align*}
+        \int_a^b F' = F(b) - F(a) 
+    \end{align*}
+    
+    where $F(a) = \lim_{t \to a^+} F(t)$ and $F(b) = \lim_{t \to b^-} F(t)$ (the integral converges provided both of these limits exist). 
+\end{itemize} 
+
+\textbf{Note}: The integral $\int_0^1 t^\lambda dt$ converges if and only if $\lambda>-1$. 
+
+\textbf{Definition 12.44 (Continued)} A similar discussion applies to integrals over unbounded intervals. Given a function $f: [a, \infty) \to \mathbb{R}$, we define 
+\begin{align*}
+    \int_a^\infty f = \lim_{x \to \infty} \int_a^x f
+\end{align*}
+provided that $f$ is bounded and integrable over all intervals $[a,x]$ with $a < x$, and provided that the limit exists. In this case, the integrals are said to converge. Of course, it might happen that $\lim_{b \to \infty} \int_a^b f = \pm \infty$ as an improper limit, in which case we would write $\lim_a^\infty f = \pm \infty$. 
+
+Given $f: (a, \infty) \to \mathbb{R}$, bounded and integrable on each closed interval inside $(a, \infty)$, we define
+
+\begin{align*}
+    \int_a^\infty f = \lim_{x \to a^+} \int_x^c f + \lim_{x \to \infty} \int_c^x f
+\end{align*}
+for any $c \in (a, \infty)$, provided that both limits on the right hand side exist. In a similar way, we define $\int_{-\infty}^b f, \int_{-\infty}^{\infty} f$ for functions defined on the appropriate domain.
+
+\textbf{Remark 12.46} 
+\begin{itemize}
+    \item The last definition does not depend on the choice of $c$, since for a different choice $c'$, 
+    
+    \begin{align*}
+    \int_{-\infty}^{c'} f &= \int_{-\infty}^c f + \int_c^{c'} f \\
+    \int_{c'}^{\infty} f &= \int_c^{\infty} f - \int_c^{c'} f
+    \end{align*}
+    
+    \item Note that we did not define $\int_{-\infty}^{\infty} f$ as $\lim_{T \to \infty} \int_{-T}^{T} f$. This would seem a rather `arbitrary' definition; even if the limit exists, we may get different answers if we approach $\pm \infty$ differently. For example, you may check that for any $C \in \mathbb{R}$, 
+    
+    \begin{align*}
+        \lim_{T \to \infty} \int_{-T}^{T+\frac{C}{T}} x dx = C
+    \end{align*}
+    
+    \item The fundamental theorem, FTC2, applies as before, provided we interpret $F(a), F(b)$ as limits. For example, 
+    
+    \begin{align*}
+    \int_a^{\infty} F'(t) dt = F(t) \Big|_a^{\infty}
+    \end{align*}
+    where, by definition, $F(\infty) = \lim_{t \to \infty} F(t)$. The integral converges if and only if this limit exists. Similarly, 
+    \begin{align*}
+        \int_{-\infty}^\infty F'(t) dt = F(t) \Big|_{-\infty}^\infty = F(\infty) - F(-\infty)
+    \end{align*}
+    The right hand side is computed as $\lim_{T \to \infty} F(T) - \lim_{T \to \infty} F(-T)$; note that we require that both of these limits exist, rather than just $\lim_{T \to \infty} (F(T) - F(-T))$. 
+\end{itemize}
+
+\textbf{Example 12.47} The integral $\int_1^\infty t^\lambda dt$ converges if and only if $\lambda < -1$.
+
+\textbf{Theorem 12.49} (Limit comparison test for integrals). Let $a < b$ (where possibly $b = \infty$), and suppose that $f, g: [a,b) \to \mathbb{R}$ are both $\neq 0$ everywhere, and are integrable on each $[a,x]$ for $a \leq x < b$. Suppose that 
+
+\begin{align*}
+    \lim_{x \to b^-} \frac{f(x)}{g(x)} = C
+\end{align*}
+exists, with $C \neq 0$. Then, 
+
+\begin{align*}
+    \int_a^b f(t)dt \text{ converges } \Leftrightarrow \int_a^b g(t) dt \text{ converges }
+\end{align*}
+
+Similar for functions defined on $(a,b]$ (where possibly $a = -\infty$).
+
+\textbf{Theorem} (Symmetry considerations)
+\begin{itemize}
+    \item Suppose $f:[a,b] \to \mathbb{R}$ is integrable, and let $h(x) = f(x-c)$ for some $c \in \mathbb{R}$. Then $h: [a+c, b+c] \to \mathbb{R}$ is integrable, and 
+    \begin{align*}
+        \int_a^b f = \int_{a+c}^{b+C} h
+    \end{align*}
+    
+    \item Suppose $f:[a,b] \to \mathbb{R}$ is integrable, and let $g(x) = f(-x)$. Then $g$ is integrable over $[-b,-a]$, and 
+    
+    \begin{align*}
+        \int_a^b f = \int_{-b}^{-a} g
+    \end{align*}
+\end{itemize}
+
+
+\newpage
+\begin{center}
+\section*{Logarithms and exponentials}
+\end{center}
+\textbf{Definition 13.1} The logarithm function 
+\begin{align*}
+    \log : (0, \infty) \to \mathbb{R}
+\end{align*}
+
+is defined by the integral 
+\begin{align*}
+    \log(x) = \int_1^x \frac{1}{t}dt 
+\end{align*}
+
+Equivalently, log is the unique differentiable function with the property $\log'(x) = \frac{1}{x}$ and $\log (1) = 0$.
+
+\textbf{Theorem 13.2} (Properties of log). 
+
+\begin{enumerate}
+    \item [(a)] For all $a, b > 0$, 
+    \begin{align*}
+        \log(ab) = \log(a) + \log(b) \\
+        \log(a/b) = \log(a) - \log(b) 
+    \end{align*}
+    
+    \item [(b)] For $\lambda \in \mathbb{Q}$ and all $x > 0$, 
+    \begin{align*}
+        \log(x^\lambda) = \lambda \log(x)
+    \end{align*}
+    
+    \item [(c)] The logarithm function is increasing, and concave.
+    
+    \item [(d)] The limits for $x \to \infty$, $x \to 0^+$ are
+    \begin{align*}
+        \lim_{x \to \infty} \log(x) = \infty, ~~~~ \lim_{x \to 0^+} \log(x) = - \infty
+    \end{align*}
+\end{enumerate} 
+\ 
+
+\textbf{Note}: The logarithm function log is slow:
+\begin{itemize}
+    \item For $x \to \infty$, the logarithm function approaches $\infty$ more slowly than any positive power of $x$. 
+    
+    \item For $x \to0^+$, the logarithm function approaches $-\infty$ more slowly than any negative power of $x$ approaches infinity. 
+\end{itemize} 
+\ 
+
+\textbf{Remark 13.3} (Logarithm at base $a$). For $a>0$ define
+
+\begin{align*}
+    \log_a(x) = \frac{\log(x)}{\log(a)}
+\end{align*}
+The function ahs the property $\log_a(a) = 1$ and $\log_a(a^n) = n$.
+
+\textbf{Definition 13.4} The Euler number $e$ is the unique solution of $\log(e) = 1$.
+
+\textbf{Definition 13.5} The exponential function $\exp: \mathbb{R} \to \mathbb{R}$ is the inverse function to the log function.
+
+\textbf{Theorem 13.6} (Properties of the exponential function). 
+
+\begin{enumerate}
+    \item [(a)] The exponential function is increasing and convex. 
+    
+    \item [(b)] For $a,b \in \mathbb{R}$, 
+    \begin{align*}
+        \exp(a+b) = \exp(a)\exp(b)
+    \end{align*}
+    
+    \item [(c)] The limits at $\pm \infty$ are
+    \begin{align*}
+        \lim_{x \to \infty} \exp(x) = \infty, ~~~~ \lim_{x \to -\infty} \exp(x) = 0
+    \end{align*}
+    
+    \item [(d)] The exponential function satisfied the differential equation 
+    \begin{align*}
+        \exp'(x) = \exp(x)
+    \end{align*}
+    and is the unique such solution satisfying $\exp(0) =1$. 
+\end{enumerate} 
+\ 
+
+\textbf{Definition 13.7} For all $a > 0$ and $x \in \mathbb{R}$, we define 
+\begin{align*}
+    a^x = \exp(x\log(a))
+\end{align*}
+\ 
+
+\textbf{Theorem 13.8} Basic properties of irrational powers: For $a, a_1, a_2 > 0$ and $x, x_1, x_2 \in \mathbb{R}$, 
+
+\begin{itemize}
+    \item $a^{x_1+x_2} = a^{x_1}a^{x_2}$
+    \item $(a^{x_1})^{x_2} = a^{x_1x_2}$
+    \item $a^0 = 1$, $a^1 = a$
+    \item $(a_1a_2)^x = (a_1)^x (a_2)^x$
+    \item $1^x = 1$
+\end{itemize} 
+\ 
+
+\textbf{Definition} 
+
+\begin{align*}
+    \frac{d}{dx}a^x = \frac{d}{dx}\exp{(x \log{a})} = a^x \cdot \log{a}
+\end{align*}
+
+When we take $a = e$, we get $\dfrac{d}{dx} e^x = e^x$. Hence, $\exp(x) = e^x$ and we use $e^x$ as shorthand for $\exp(x)$.
+
+\textbf{Proposition 13.10} %TODO !!!!
+
+\newpage
+
+\begin{center}
+    \section*{More about exponential functions}
+\end{center}
+%TODO
+
+\newpage
+
+\begin{center}
+    \section*{Trigonometic functions}
+\end{center}
+
+\newpage
+
+\begin{center}
+    \section*{Irrationality of $\pi$ and $e$}
+\end{center}
+
+
+
+
+\newpage
+
+
+\begin{center}
+\section*{Tangent and cotangent function}
+\end{center}
+
+\textbf{Definition 13.40} (Tangent and cotangent function)
+
+The tangent function $x \to \tan(x)$ is defined for $x \neq \frac{\pi}{2} + k \pi$, $k \in \mathbb{Z}$, by 
+
+\begin{align*}
+    \tan(x) = \frac{\sin(x)}{\cos(x)}
+\end{align*}
+
+The cotangent function $x \to \cot(x)$ is defined for $x \neq k \pi$, $k \in \mathbb{Z}$, by 
+
+\begin{align*}
+    \cot(x) = \frac{\cos(x)}{\sin(x)}
+\end{align*}
+
+\textbf{Properties of tangent and cotangent} 
+\begin{itemize}
+ \item Both tan, cos are periodic with period $\pi$ (not just $2 \pi$): 
+ \begin{align*}
+     \tan(x + \pi) = \tan(x), ~~~~ \cot(x+\pi) = \cot(x)
+ \end{align*}
+ 
+ \item $\tan(x + \dfrac{\pi}{2}) = - \cot(x)$
+ 
+ \item $\tan'(x) = 1 + \tan^2(x)$ and $\cot'(x) = -(1+\cot^2(x))$. 
+ 
+ \item tan is increasing for $\pi/2 < x < \pi/2$, is an odd function, $\tan'(0) = 1$, $\lim_{x \to \pi/2^-} \tan(x) = \infty$ 
+ 
+ \item cot is decreasing for each of the intervals, is an odd function and $\lim_{x \to \pi^-} \cot(x) = - \infty$
+\end{itemize} 
+\
+
+\textbf{Definition of inverses} 
+
+Since tan is increasing on $(-\dfrac{\pi}{2}, \dfrac{\pi}{2})$, the inverse function is defined. It is denoted $\arctan: \mathbb{R} \to \mathbb{R}$. By definition, it is increasing, odd, bounded and $\lim_{x \to \pm \infty} = \pm \dfrac{\pi}{2}$. 
+
+\begin{align*}
+    \arctan'(x) = \frac{1}{\tan'(y)} = \frac{1}{1 + \tan^2(y)} = \frac{1}{1+x^2}
+\end{align*}
+
+\newpage
+
+\begin{center}
+    \section*{Hyperbolic trigonometric functions}
+\end{center}
+
+\textbf{Definition:} 
+
+\begin{align*}
+    \sinh(x) &= \frac{e^x - e^{-x}}{2}, ~~~~ \cosh(x) = \frac{e^x+e^{-x}}{2} \\
+    \tanh(x) = \frac{\sinh(x)}{\cosh(x)} &= \frac{e^x - e^{-x}}{e^x+e^{-x}}, ~~~~ \coth(x) = \frac{\cosh(x)}{\sinh(x)} = \frac{e^x+e^{-x}}{e^x-e^{-x}}
+\end{align*}
+
+The first three functions are defined for all $x \in \mathbb{R}$, the last function for $x \neq 0$.
+
+\textbf{Properties:}
+\begin{itemize}
+    \item $\sinh'(x) = \cosh(x), ~~~~~ \cosh'(x) = + \sinh(x)$
+    
+    \item $f''(x) - f(x) = 0$
+\end{itemize} 
+
+\newpage
+
+\begin{center}
+    \section*{Infinite series}
+\end{center}
+
+
+\textbf{Definition:} Given a sequence of numbers $a_1, a_2, a_3, \cdots$ one can consider the corresponding series given by sums
+\begin{align*}
+    s_1 = a_1, ~~ s_2 = a_1 + a_2,~&~ s_3, a_1+ a_2+a_3, \cdots \\
+    s_n &= \sum_{k=1}^n a_k
+\end{align*}
+We refer to a sequence $s_n$ obtained in this way as a series, and we say that the series converges (with limit $l$) is the sequence $s_n$ converges (with limit $l$). If the limit exists (possibly as an improper limit), we write 
+\begin{align*}
+    \sum_{k=1}^\infty a_k = l
+\end{align*}
+for this limit. One sometimes refers to the formal expresssion $\sum_{k=1}^\infty a_k$ itself as the series (even before one has established convergence), and to 
+\begin{align*}
+    s_n = \sum_{k=1}^n a_k
+\end{align*}
+as its partial sums. Thus, a series converges if and only if the sequence of partial sums converges.
+
+
+\textbf{Remark 18.1:} Actually, every sequence $s_n$ can be regarded as a series: Letting
+\begin{align*}
+    a_1 = s_1, ~ a_2 = s_2 - s_1, ~ a_3 = s_3 - s_2, \cdots
+\end{align*}
+we have that $s_n = s_{n-1} + a_n$ for all $n$, hence $s_n = \sum_{k=1}^n a_k$. Nevertheless, certain $s_n$'s arise `more naturally' as sums.
+
+\textbf{Remark 18.2:} In practice, it is often useful to let the series (or sequence) start at $n = 0$ or at some other value $n_0 \in \mathbb{Z}$, so we'll consider any such expression 
+\begin{align*}
+    \sum_{n = n_0}^\infty a_n
+\end{align*}
+as a series. We typically make this allowance without any special comment.
+
+\subsection*{18.2 Criteria for convergence of series}
+
+
+\textbf{Proposition 18.4:} 
+
+A necessary condition for convergence of a series $\sum_{k=0}^\infty a_k$ is that 
+\begin{align*}
+    \lim_{n \to \infty} a_n = 0
+\end{align*}
+In particular, the sequence $\{a_n\}$ must be bounded.
+
+\textbf{Proposition 18.6 (Boundedness criterion):}
+
+Suppose $\{a_n\}$ is a sequence of numbers with $a_n \geq 0 $. Then the sequence $\sum_{k=0}^\infty a_k$ converges if and only if the sequence of partial sums $s_n = \sum_{k=0}^n a_k$ is bounded above.
+
+\textbf{Proposition 18.8 (Comparison test):} Suppose $\{a_n\}, \{b_n\}$ are sequences of numbers with 
+\begin{align*}
+    0 \leq a_n \leq b_n
+\end{align*}
+Then 
+\begin{align*}
+    \text{convergence of }\sum_{k=0}^\infty b_k \Rightarrow \text{ convergence of } \sum_{k=0}^\infty a_k
+\end{align*}
+More generally, this conclusion holds true if there exists $N$ with $n \geq N \Rightarrow 0 \leq a_n \leq b_n$. 
+
+\end{document}

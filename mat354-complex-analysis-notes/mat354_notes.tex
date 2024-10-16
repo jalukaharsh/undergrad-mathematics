@@ -1,0 +1,263 @@
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{geometry}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{8pt}
+\usepackage{graphicx}
+\usepackage{multicol}
+\usepackage{mathrsfs}
+\usepackage[shortlabels]{enumitem}
+\usepackage{hyperref}
+\usepackage{siunitx}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\QED}{\rightline{\emph{Quod erat demonstrandum.}}}
+\newcommand{\xhat}{\mathbf{\hat{x}}}
+\newcommand{\yhat}{\mathbf{\hat{y}}}
+\newcommand{\zhat}{\mathbf{\hat{z}}}
+\newcommand{\thetahat}{\mathbf{\hat{\theta}}}
+\newcommand{\phihat}{\mathbf{\hat{\phi}}}
+\newcommand{\rhat}{\mathbf{\hat{r}}}
+\newcommand{\shat}{\mathbf{\hat{s}}}
+\def\rcurs{{\mbox{$\resizebox{.16in}{.08in}{\includegraphics{images/ScriptR.pdf}}$}}}
+\def\brcurs{{\mbox{$\resizebox{.16in}{.08in}{\includegraphics{images/BoldR.pdf}}$}}}
+\def\hrcurs{{\mbox{$\hat \brcurs$}}}
+
+\allowdisplaybreaks
+
+
+\title{MAT354: Complex Analysis - Notes}
+\author{Harsh Jaluka}
+\date{\today}
+
+\begin{document}
+
+\begin{titlepage}
+\maketitle 
+\end{titlepage}
+
+\newpage 
+\tableofcontents
+
+\newpage
+\section{Lecture 1}
+
+\section{Lecture 2}
+
+\section{Lecture 3}
+\subsection{Definition: polynomials, zeroes, orders}
+A function $f(z)$ is a polynomial if 
+\begin{align*}
+    f(z) &= a_n z^n + a_{n-1}z^{n-1} + \cdots + a_0 \\
+    &= a_n(z - c_1)^{k_1} \cdots (z - c_n)^{k_n}
+\end{align*}
+The zeroes of the polynomial are the $c_i$'s and each zero is said to have an order equal to the corresponding $k_i$. 
+
+\subsection{Definition: rational functions}
+A function $R(z)$ is rational if 
+\begin{align*}
+R(z) = \frac{P(z)}{Q(z)}
+\end{align*}
+where $P,Q$ are polynomials with no common factors. 
+
+\subsection{Definition: poles and their orders}
+The poles of a rational function $R(z) = \frac{P(z)}{Q(z)}$ are precisely the zeroes of $Q(z)$. The order of the pole is the order of the corresponding zero of $Q(z)$. 
+
+\section{Lecture 4}
+\subsection{Definition: holomorphic}
+A function $f: \Omega \in \C \to \C$ where $\Omega$ open is said to be holomorphic at $z$ if 
+\begin{align*}
+    \lim_{h \to 0} \frac{f(z+h)- f(z)}{h} = c
+\end{align*} 
+for some $c \in \C$.
+
+\subsection{Proposition: holomorphic $\Longleftrightarrow$ Cauchy-Riemann equations}
+$f(z)$ is holomorphic at $z$ if and only if the partial derivatives with respect to $x,y$ ($z = x+iy$) satisfy the Cauchy-Riemann equations
+\begin{align*}
+    \frac{\partial f}{\partial x} + i \frac{\partial f}{\partial y} = 0
+\end{align*}
+
+\subsection{Example: upper half plane to unit disk}
+The fractional linear transformation 
+\begin{align*}
+    \frac{z-i}{z+i}
+\end{align*}
+maps the upper half plane to the unit disk
+
+\section{Lecture 5}
+
+\section{Lecture 6}
+
+\section{Lecture 7}
+
+\section{Lecture 8}
+
+\section{Lecture 9}
+
+\section{Analytic functions}
+\subsection{Definition: analytic}
+$f(z)$ analytic in open set $\Omega$ if it has a convergent power series representation at every point $z_0 \in \Omega$. In other words, for all $z_0 \in \Omega$, there exists a convergent power series
+\begin{align*}
+    \sum_{n=0}^\infty a_n (z - z_0)^n
+\end{align*}
+such that for all $|z-z_0| < r$ for some $r \leq$ radius of convergence
+\begin{align*}
+    f(z) = \sum_{n=0}^\infty a_n (z-z_0)^n 
+\end{align*}
+
+\subsection{Proposition: primitive of an analytic function}
+If $f(z)$ has a convergent power series representation at $z_0$
+\begin{align*}
+    f(z) = \sum_{n=0}^\infty a_n (z-z_0)^n 
+\end{align*}
+then there is a convergent power series $g(z)$ at $z_0$ such that $g'(z) = f(z)$ in some disk $|z-z_0| < r$. Moreover, $g(z)$ is given by 
+\begin{align*}
+    g(z) = \sum_{n=0}^\infty \frac{a_n}{n+1}(z-z_0)^{n+1}
+\end{align*}
+has the same radius of convergence as $f(z)$ and is uniquely determined up to a constant.
+
+\subsection{Proposition: convergent power series defines analytic function}
+If $f(z) = \sum a_n (z - z_0)^n $ is a convergent power series with radius of convergence $R$, then $f(z)$ is analytic in the disk $|z-z_0| < R$. 
+
+\subsection{Proposition: Every analytic function is holomorphic}
+
+\subsection{Proposition: zeroes of not identically zero analytic function are isolated}
+If $f$ analytic and not identically zero, then its zeroes are isolated. We say that $x \in X$ is an isolated point of $X$ if $x$ has a neighbbourhood whose intersection with $X$ reduces to the point $x$. 
+
+\subsection{Definition: meromorphic}
+A function $f$ is meromorphic in an open set $\Omega$ if it is well-defined and analytic in the complement of a discrete set. Moreover, in a neighbourhood of any point in $\Omega$, it can be expressed as the quotient of two analytic functions $\frac{f}{g}$ with $g$ not identically zero.
+
+\section{Lecture 11}
+
+\subsection{Definition: integral of one-form over a curve}
+\begin{align*}
+    \int_\gamma \omega = \int_a^b F(t)dt 
+\end{align*}
+where $\omega = Pdx + Qdy$ ($P,Q$ continuous functions on $\Omega$) and $F(t) = P(x(t), y(t))x'(t) + Q(x(t), y(t))y'(t)$. 
+\subsection{Lemma: points in domain can be connected by piecewise $C^1$ curve}
+Any two points in a connected and open $\Omega \in \R^2$ can be connected by a piecewise $C^1$ curve. 
+
+\subsection{Proposition: primitive of one-form}
+A one-form $\omega$ has a primitive if and only if $\int_\gamma w = 0$ for every piecewise $C^1$ closed curve $\gamma$. 
+
+\section{Lecture 12}
+
+\subsection{Cauchy's Theorem}
+If $f(z)$ is a holomorphic in open $\Omega \in \C$, then $f(z)dz$ is closed. 
+
+\subsection{Corollary 1 (of Cauchy's theorem):}
+A holomorphic function in open $\Omega \in \C$ locally has a primitive which is holomorphic. 
+
+\subsection{Corollary 2 (of Cauchy's theorem): Generalisation of Cauchy's theorem}
+In Cauchy's theorem, it is enough to assume that $f$ is continuous in $\Omega$ and holomorphic outside a line parallel to the $x$-axis. 
+
+\section{Lecture 13}
+\subsection{Definition: homotopic}
+If $\gamma_0, \gamma_1 : [0,1] \to \Omega$ are two continuous closed curves with the same endpoints
+\begin{align*}
+    \gamma_0(0) = \gamma_1(0), ~~~~~ \gamma_0(1) = \gamma_1(1)
+\end{align*}
+then they are said to be homotopic in $\Omega$ with fixed endpoints if there is a continuous function $\gamma: I_s \times I_t \to \Omega$ such that
+\begin{align*}
+    \gamma(0, t) = \gamma_0(t), ~~&~~~ \gamma(1,t) = \gamma_1(t) \\
+    \gamma(s, 0) = \gamma_0(0) = \gamma_1(0), ~~&~~~ \gamma(s, 1) = \gamma_0(1) = \gamma_1(1)
+\end{align*}
+If $\gamma_1$ is constant, we say that the curves are homotopic as closed curves or that they are homotopic to a point. 
+
+\subsection{Theorem: invariance of integral of closed form under homotopy}
+If $\omega$ is a closed differential form in $\Omega$ and $\gamma_0, \gamma_1:[0,1] \to \Omega$ are continuous homotopic curves with fixed endpoints or as closed curves, then 
+\begin{align*}
+    \int_{\gamma_0} \omega = \int_{\gamma_1}\omega 
+\end{align*}
+
+\section{Lecture 14}
+
+\subsection{Lemma (for homotopy integral invariance theorem)}
+Let $\omega$ be a closed form in $\Omega$ and $\gamma: [a,b] \times [c,d] \to \Omega$ a continuous curve. Then, there is a continuous function $f: [a,b] \times [c,d] \to \C$ such that for every $(s_0, t_0) \in [a,b] \times [c,d]$, there is a primitive $F$ of $\omega$ defined in a neighbourhood of $\gamma(s_0, t_0)$ such that $f(s,t) = F(\gamma(s,t))$ in some neighbourhood of $(s_0, t_0)$. Moreover, $f$ is unique up to addition of a constant. 
+
+\subsection{Definition: simply connected} 
+$\Omega$ is simply-connected if $\Omega$ is connected and any closed curve in $\Omega$ is null-homotopic. 
+
+\subsection{Corollary: simply-connected}
+In simply-connected open sets, any closed form has a primitive. 
+
+\subsection{Definition: winding number} 
+The winding number of a closed curve $\gamma$ with regards to any point $a \notin \gamma$ is defined as 
+\begin{align*}
+    w(\gamma, a) = \frac{1}{2\pi i } \int_\gamma \frac{dz}{z - a} \in \mathbb{Z}
+\end{align*}
+
+\subsection{Theorem: Cauchy's Integral Formula} 
+Let $\Omega \in \C$ open, $a \in C$, $f(z)$ holomorphic in $\Omega$ and $\gamma$ a closed curve in $\Omega$ not containing $a$, homotopic to a point in $\Omega$. Then, 
+\begin{align*}
+    \frac{1}{2\pi i} \int_\gamma \frac{f(z)}{z-a}dz = w(\gamma, a) f(a)
+\end{align*}
+
+\subsection{Corollary (Cauchy's Integral Formula)}
+If $f(z)$ is holomorphic in some neighbourhood of a closed disk $D$ and $\gamma$ is the boundary of the disk (in positive sense), then 
+\begin{align*}
+    \frac{1}{2\pi i} \int_\gamma \frac{f(z)}{z-a} dz = 
+    \begin{cases}
+        f(a) & a \text{ in circle}\\
+        0 & a \text{ not in circle }
+    \end{cases}
+\end{align*}
+
+\subsection{Cauchy's Theorem (General)}
+Consider $f(z)$ continuous in $\Omega$. TFAE
+\begin{enumerate}
+    \item $f(z)$ is holomorphic in $\Omega$
+    \item $f(z)dz$ is closed
+    \item $f(z) = \frac{1}{2\pi i}\int_\gamma \frac{f(\xi)}{(\xi - z)}d \xi$ when $z \in$ interior of closed disk $D \in \Omega$ with oriented boundary $\gamma$. 
+\end{enumerate}
+
+\subsection{Morera's theorem}
+If $f(z)dz$ is closed then $f(z)$ locally has a primitive $g(z)$ which is holomorphic. 
+
+\subsection{Corollary: Morera's theorem} 
+Continuous function which is holomorphic except on a line is holomorphic everywhere. 
+
+
+\section{Lecture 15}
+
+\subsection{Theorem: Holomorphic functions have convergent power series expansions}
+A holomorphic function $f(z)$ in a disk $|z| < R$ has a convergent power series expansion in the disk. 
+
+\subsection{Corollary: Every holomorphic function is analytic}
+
+\subsection{Definition: Cauchy's inequalities}
+TODO
+
+\subsection{Liouville's theorem}
+A bounded holomorphic function in $\C$ is constant. 
+
+\subsection{Fundamental Theorem of Algebra}
+Every non-constant polynomial has at least one root. 
+
+\subsection{Schwarz's Reflection Principle}
+TODO 
+
+\section{Lecture 16}
+
+\section{Lecture 17}
+\subsection{Definition: isolated singularity}
+A holomorphic function $f(z)$ in a punctured disk $0 < |z| < R$, has an isolated singularity at $0$ if $f$ cannot be extended to be holomorphic in $|z| < R$. 
+
+The isolated singularity is a pole if there are only finitely many negative exponents in the Laurent series, and is an essential singularity if there are infinitely many such exponents. 
+
+\subsection{Theorem (Weierstrass)}
+If $0$ is an essential singularity of $f$ then for any $\epsilon > 0$, $f(0 < |z| < \epsilon)$ is dense in $\C$. 
+
+\subsection{Picard's Theorem}
+The holomorphic image of a punctured disk, $f(0 < |z| < \epsilon)$ omits at most one value from $\C$. 
+
+\section{Lecture 18}
+
+\section{Lecture 19}
+
+\end{document}  

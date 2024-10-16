@@ -1,0 +1,299 @@
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{geometry}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{8pt}
+\usepackage{graphicx}
+\usepackage{multicol}
+\usepackage{mathrsfs}
+\usepackage[shortlabels]{enumitem}
+\usepackage{hyperref}
+\usepackage{siunitx}
+\usepackage{stmaryrd}
+\usepackage{physics}
+
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\QED}{\rightline{\emph{Quod erat demonstrandum.}}}
+\newcommand{\xhat}{\mathbf{\hat{x}}}
+\newcommand{\yhat}{\mathbf{\hat{y}}}
+\newcommand{\zhat}{\mathbf{\hat{z}}}
+\newcommand{\thetahat}{\mathbf{\hat{\theta}}}
+\newcommand{\phihat}{\mathbf{\hat{\phi}}}
+\newcommand{\rhat}{\mathbf{\hat{r}}}
+\newcommand{\shat}{\mathbf{\hat{s}}}
+\def\rcurs{{\mbox{$\resizebox{.16in}{.08in}{\includegraphics{images/ScriptR.pdf}}$}}}
+\def\brcurs{{\mbox{$\resizebox{.16in}{.08in}{\includegraphics{images/BoldR.pdf}}$}}}
+\def\hrcurs{{\mbox{$\hat \brcurs$}}}
+
+\allowdisplaybreaks
+
+
+\title{Group Theory Notes}
+\author{Harsh Jaluka}
+\date{}
+
+\begin{document}
+
+\begin{titlepage}
+\maketitle 
+\end{titlepage}
+
+\newpage 
+\tableofcontents
+
+\newpage
+\section{List of groups with definitions and representations}
+
+\subsection{$SO(3): \{R \in Aut(\mathbb{V}), R^TR = 1, det(R) = 1 \}$}
+\begin{itemize}
+    \item ``Special Orthogonal Group'' (``3D rotation group")
+    \item $SO(3) \subset Aut(\R^3)$
+    \item Fundamental/defining/vector representation is the identity map
+    \item Lie algebra $ \mathfrak{so}(3) = \{ r \in End(\mathbb{V}); r^T = -r \}$
+        \begin{itemize}
+            \item an (imaginary) basis: $J_k := i\vec{e}^\times_k \in i \mathfrak{so}(3) \subset \mathfrak{so}(3, \mathbb{C})$ 
+            \item defining representation $\rho_{\mathfrak{so}(3)}(J_k) = i \vec{e}_k^\times \in i \mathfrak{so}(3) \subset iEnd(\mathbb{R}^3)$ 
+            \item Lie bracket expansion: $\llbracket J_i, J_j \rrbracket = i \epsilon_{ijk}J_k$ 
+            \item $N$-dimensional irrep labelled by non-negative `spin' $j = \frac{1}{2}(N-1)$
+            \begin{itemize}
+                \item representation space spanned by 
+                \begin{align*}
+                    \ket{m},~~~~~ m \in \{-j, -j +1, \cdots, j -1, j \}
+                \end{align*}
+                \item action of generators $J_z, J_{\pm} = J_x \pm i J_y$ 
+                \begin{align*}
+                    \rho(J_z) \ket{m} &= m \ket{m} \\
+                    \rho(J_\pm) \ket{m} &= c_m^\pm \ket{m \pm 1}
+                \end{align*}
+                where 
+                \begin{align*}
+                    c_m^\pm = \sqrt{(j \mp m)(j \pm m +1)}
+                \end{align*}
+                \item unitarity 
+                \begin{align*}
+                    \rho(J_z)^\dagger = \rho(J_z), ~~~~ \rho(J_+)^\dagger = \rho(J_-)
+                \end{align*}
+                \item application: spherical harmonics (TODO)
+                \item character polynomial
+                \begin{align*}
+                    P_j(q) = \sum_{k=0}^{2j} q^{2k-2j} = \frac{q^{2j+1}- q^{-2q-1}}{q-q^{-1}}
+                \end{align*}
+                \item the tensor product of two representations with spin $j$ and $j'$ yields 
+                \begin{align*}
+                    P_{j \otimes j'} (q) = P_j(q) P_{j'}(q) &= \frac{q^{2j+1} -q^{-2j-1} }{q - q^{-1}}\frac{q^{2j'+1} - q^{-2j' - 1}}{q - q^{-1}} \\
+                    &= \sum_{k=0}^{2j'}P_{j+j'-k}(q) 
+                \end{align*}w
+                in the last step, assume $j' \leq j$. If not, $P_{-k} = -P_{k-1}$
+            \end{itemize}
+            \item Casimir invariant $C = J_k \otimes J_k = J_z \otimes J_z + \frac{1}{2}J_+ \otimes J_- + \frac{1}{2}J_- \otimes J_+$ with 
+            \begin{align*}
+                \rho(C) \ket{m} = j(j+1) \ket{m}
+            \end{align*}
+        \end{itemize}
+\end{itemize}
+
+\subsection{$SU(2)$}
+\begin{itemize}
+    \item double cover of $SO(3)$
+    \item Lie algebra $\mathfrak{su}(2) = \{m \in End(\mathbb{C}^2); m = -m^\dagger, tr(m) = 0\}$ 
+        \begin{itemize}
+            \item an (imaginary) basis: $J_k = \frac{1}{2}\sigma_k \in i \mathfrak{su}(2)$ where $\sigma_k$ Pauli matrices
+            \item defining representation $\rho_{\mathfrak{su}(2)} (J_k) = \frac{1}{2}\sigma_k \in i \mathfrak{su}(2) \subset End(\mathbb{C}^2)$
+            \item Lie bracket expansion: $\llbracket J_i, J_j \rrbracket = i\epsilon_{ijk} J_k$ 
+        \end{itemize}
+\end{itemize}
+
+\subsection{$Sp(1)$}
+\begin{itemize}
+    \item Lie algebra $\mathfrak{sp}(1)$ 
+        \begin{itemize}
+            \item defining representation $\rho_{\mathfrak{sp}(1)}(-iJ_x) = \frac{1}{2}\vu{i}$ and similarly $J_y \to \vu{j}$ and $J_z \to \vu{k}$
+            \begin{itemize}
+                \item symplectic
+                \begin{align*}
+                    \rho_{\mathfrak{sp}(1)}(a)^\dagger = - \rho_{\mathfrak{sp}(1)}(a)
+                \end{align*}
+            \end{itemize}
+        \end{itemize}
+\end{itemize}
+
+\subsection{$S_3$}
+\begin{itemize}
+    \item $|S_3| = 3! = 6$ elements 
+    \item all elements can be written in terms of two elementary permutations $\sigma_1, \sigma_2$ which satisfy $(\sigma_1)^2 = (\sigma_2)^2 = (\sigma_1\sigma_2)^2 = 1$
+    \item can be viewed as symmetry group of an equilateral triangle
+    \item  
+\end{itemize}
+
+\subsection{Other groups}
+
+\begin{enumerate}
+    \item $SO(2)$: orthogonal matrices with unit determinant
+    \item (Reals, +) 
+    \item $O(2)$ 
+    \begin{itemize}
+        \item dihedral group is a subgroup 
+    \end{itemize}
+	\item (Reals/{0}, x) 
+	\item $S_n$, $n>1$
+        \begin{itemize}
+            \item ``symmetric group''
+            \item all $n!$ permutations of a set of $n$ elements
+        \end{itemize}
+	\item U(1): set of unitary 1x1 matrices (unitary: conjugate transpose = inverse)
+    \item $G^(1) = {R_\phi^(1): \phi \in R/2piZ}$  
+	\item $Aut(\R^3)$
+	\item Spin(3)
+    \item $O(3) = \{ R \in Aut(\R^3); R^TR = 1\}$
+        \begin{itemize}
+            \item ``group of reflections''
+            \item Lie algebra $\mathfrak{so}(3) =\{ r \in End(\mathbb{V}); r^T = -r \}$ 
+        \end{itemize}
+    \item $C_n = \mathbb{Z}_N = \mathbb{Z}/n\mathbb{Z}$, $n>1$ 
+        \begin{itemize}
+            \item ``cyclic group''
+            \item integers modulo $n$ under addition
+            \item abelian
+        \end{itemize}
+    \item $SU(2)_L \times SU(2)_R$
+        \begin{itemize}
+            \item double cover of $SO(4)$
+        \end{itemize}
+    \item $\{ e\}$ 
+        \begin{itemize}
+            \item ``trivial group''
+        \end{itemize}
+    \item $A_n$, $n>1$
+        \begin{itemize}
+            \item ``alternating group''
+            \item all $n!/2$ even permutations of a set of $n$ elements
+        \end{itemize}
+\end{enumerate}
+
+\section{Definitions}
+\begin{itemize}
+    \item Lie group: a group whose set $G$ is a differentiable manifold and whose composition rule and inversion are smooth maps on this manifold 
+    \item universal cover of a group: a bigger group which contains the original group and is simply connected
+    \item abelian: ab = ba
+    \item automorphism: invertible linear transformation from $\mathbb{V}$ to itself 
+    \item endomorphism: linear map from $\mathbb{V}$ to itself 
+    \item composition rule: group operation (eg addition for group of reals equipped with +)
+    \item For any Lie group there is a corresponding Lie algebra with a Lie bracket
+        \begin{itemize}
+            \item tangent space of a group at the identity 
+            \item not associative 
+            \item when the Lie algebra is given in terms of matrices, i.e. $\mathfrak{g} \subset End(\mathbb{V})$, the matrix commutator and the Lie bracket coincide. 
+        \end{itemize}
+    \item quaternions $\mathbb{H}$: number field spanned by $1, \vu{i}, \vu{j}, \vu{k}$ with 
+        \begin{itemize}
+            \item products given by $\vu{i} \vu{j} = - \vu{j} \vu{i} = \vu{k}$ and cyclic permutations ($\implies$ non commutativity)
+            \item closely related to Pauli matrices 
+            \begin{align*}
+                (1, \vu{i}, \vu{j}, \vu{k}) \equiv (1, -i\sigma_x, -i\sigma_y, -i\sigma_z)
+            \end{align*}
+        \end{itemize}
+    \item Casimir operator $C \in \mathfrak{g} \otimes \mathfrak{g}$ with $\llbracket a, C \rrbracket = 0, \forall a \in \mathfrak{g}$ where 
+    \begin{align*}
+        \llbracket a, b \otimes c \rrbracket := \llbracket a,b \rrbracket \otimes c + b \otimes \llbracket a,c \rrbracket
+    \end{align*}
+    \begin{itemize}
+        \item any representation $\rho: \mathfrak{g} \to End(\mathbb{V})$ can be lifted to $\rho: \mathfrak{g} \otimes \mathfrak{g} \to End(\mathbb{V})$ with 
+        \begin{align*}
+            \rho (a \otimes b) := \rho(a) \rho(b)
+        \end{align*}
+    \end{itemize}
+    \item tensor product of Lie algebra representations $\rho_\otimes: \mathfrak{g} \to End(\mathbb{V_\otimes})$ defined as 
+    \begin{align*}
+        \rho_\otimes := \sum_{k=1}^N 1 \otimes \cdots \otimes 1 \otimes \rho_k \otimes 1 \otimes \cdots \otimes 1 
+    \end{align*}
+    where $\rho_k: \mathfrak{g} \to End(\mathbb{V}_k), k = 1, \cdots, N$ 
+    \item direct sum of Lie algebra representations $\rho_\oplus: \mathfrak{g} \to End(\mathbb{V}_\oplus)$ defined as 
+    \begin{align*}
+        \rho_\oplus := \rho_1 \oplus \cdots \oplus \rho_N 
+    \end{align*}
+    \item character polynomials: define a group element $g(q)$ depending on a formal variable $q$ 
+    \begin{align*}
+        g(q) = \exp(2\log(q)J_z) = q^{2J_z}
+    \end{align*}
+    define the character as 
+    \begin{align*}
+        P_\rho (q) = \tr \rho(g(q)) = \sum_k n_k q^{2m_k}
+    \end{align*}
+    where $m_k$ eigenvalues of $J_z$ and $n_k$ corresponding multiplicities 
+    \begin{itemize}
+        \item $q = 1$ gives dimension
+        \item have the property
+         \begin{align*}
+            P_{\rho \otimes \rho'}(q) &= P_\rho(q) P_{\rho'}(q) \\
+            P_{\rho \oplus \rho'}(q) &= P_\rho(q) + P_{\rho'}(q)
+        \end{align*}
+        \item 
+    \end{itemize}
+
+\end{itemize}
+
+\section{Isomorphisms}
+\begin{itemize}
+    \item $\mathfrak{so}(3) \equiv \mathfrak{su}(2) \equiv \mathfrak{sp}(1)$
+    \item $Spin(3) \equiv SU(2) \equiv Sp(1) \equiv S^3 \equiv D_3$
+    \item $SO(3) \equiv SU(2)/\mathbb{Z}_2$
+    \item icosahedral $\equiv A_5$ 
+    \item $T \equiv A_4$ 
+    \item $T_d \equiv O \equiv S_4$ 
+\end{itemize}
+
+\section{Notation}
+\begin{itemize}
+    \item $\mathfrak{gothic}$ script represents Lie algebras
+    \item $\vec{v}^\times$ denotes the $3\times3$ anti-symmetric matrix that defines the cross product of $\vec{v}$ with an arbitrary vector $\vec{w}$ via matrix multiplication: $\vec{v}^\times \vec{w} = \vec{v} \times \vec{w}$
+        \begin{align*}
+            \vec{v}^\times := 
+            \begin{bmatrix}
+                0 & -v_z & + v_y \\
+                +v_z & 0 & -v_x \\
+                -v_y & + v_x & 0 
+            \end{bmatrix}
+        \end{align*}
+\end{itemize}
+
+\section{Maps}
+\begin{itemize}
+    \item adjoint action: $Ad(R): \mathfrak{g} \to \mathfrak{g}$ such that $Ad(R)(a_1) := Ra_1 R^{-1} =: a_2$ with $a_1, a_2 \in \mathfrak{g}$ 
+    \item adjoint representation: $Ad: G \to Aut(\mathfrak{g})$
+    \item adjoint action $ad: \mathfrak{g} \to End(\mathfrak{g})$ is a linear map such that 
+        \begin{itemize}
+            \item $ad(a_2) a_1 = a_2a_1 - a_1a_2$
+        \end{itemize}
+    \item  ``Lie bracket'' $\llbracket , \rrbracket: \mathfrak{g} \times \mathfrak{g} \to \mathfrak{g}$
+        \begin{itemize}
+            \item anti-symmetric: $\llbracket a,b \rrbracket = - \llbracket b, a \rrbracket$ 
+            \item Jacobi identity satisfied: $\llbracket a, \llbracket b,c \rrbracket \rrbracket + \llbracket b, \llbracket c,a \rrbracket \rrbracket + \llbracket c, \llbracket a,b \rrbracket \rrbracket = 0 $  
+        \end{itemize}
+        \item exponential map $\exp: \mathfrak{g} \to G$ 
+            \begin{itemize}
+                \item If matrix group $G \subset Aut(\mathbb{V})$ or if representation $\rho: G \to Aut(\mathbb{V})$, it coincides with the matrix exponential $\exp: End(\mathbb{V}) \to Aut(\mathbb{V})$
+                    \begin{align*}
+                        \exp a = \sum_{n=0}^\infty \frac{1}{n!} a^n
+                    \end{align*}
+                \item $\exp a \exp b = exp C(a,b)$ where $C(a,b)$ Baker-Campbell-Hausdorff formula: 
+                    \begin{align*}
+                        C(a,b) = a + b + \frac{1}{2}\llbracket a, b \rrbracket + \frac{1}{12} \llbracket a, \llbracket a,b \rrbracket \rrbracket + \frac{1}{12}\llbracket b, \llbracket b, a \rrbracket \rrbracket + \cdots 
+                    \end{align*}
+                \item $(\exp a)^{-1} = \exp (-a) $
+            \end{itemize}
+        \item Lie algebra representation $\rho: \mathfrak{g} \to End(\mathbb{V})$ such that 
+        \begin{align*}
+            \rho(\llbracket a,b \rrbracket) = [\rho(a), \rho(b)]
+        \end{align*}
+            \begin{itemize}
+                \item trivial representation $\rho_0: \mathfrak{g} \to End(\mathbb{V})$ with $\rho_0 (J_k) = 0$
+                \item adjoint representation $ad: \mathfrak{g} \to End(\mathfrak{g})$ with $\llbracket a,b \rrbracket = ad(a)b$ 
+            \end{itemize}
+\end{itemize}
+
+\end{document}  

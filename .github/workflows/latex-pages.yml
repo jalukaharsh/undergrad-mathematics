@@ -1,0 +1,13 @@
+name: Build & Deploy LaTeX PDFs
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build-and-deploy:
+    uses: jalukaharsh/latex-actions/.github/workflows/latex-pages.yml@main
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
